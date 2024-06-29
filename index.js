@@ -3,7 +3,7 @@ import Docker from 'dockerode';
 import fsp from 'fs/promises';
 
 try {
-  const serviceId = core.getInput('serviceId') || process.env.SERVICE_ID;
+  let serviceId = core.getInput('serviceId') || process.env.SERVICE_ID;
   const dockerImageTag = core.getInput('imageTag') || process.env.IMAGE_TAG;
   const dockerOptions = JSON.parse(core.getInput('dockerOptions') || process.env.DOCKER_OPTIONS || '{}');
   const privateKeyPath = core.getInput('privateKeyPath') || process.env.PRIVATE_KEY_PATH;
@@ -23,6 +23,17 @@ try {
   core.info('Connecting to docker...');
   const docker = new Docker(dockerOptions);
   await docker.swarmInspect();
+
+  if (serviceId.startsWith('!')) {
+    const services = await docker.listServices();
+    const foundService = services.find((service) => service.Spec.Name === serviceId.substring(1));
+    if (!foundService) {
+      throw new Error(`Service "${serviceId.substring(1)}" does not exist`);
+    }
+
+    serviceId = foundService.ID;
+    core.info(`Resolved service ${serviceId}`);
+  }
 
   /** @type Docker.Service */
   const service = await docker.getService(serviceId).inspect();
