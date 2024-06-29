@@ -18,7 +18,12 @@ Simple Docker Swarm service updater similar to Portainer webhooks.
 
 **Description:** JSON connection options ([dockerode](https://github.com/apocas/dockerode))  
 **Required:** true  
-**Hint:** You can use `dockerOptions.privateKeyPath` to specify the path to your private key for secure connections.
+
+### `privateKeyPath`
+
+**Description:** SSH Path to your private key for secure connections.
+**Required:** false  
+
 
 ## Usage
 

@@ -6,12 +6,12 @@ try {
   const serviceId = core.getInput('serviceId') || process.env.SERVICE_ID;
   const dockerImageTag = core.getInput('imageTag') || process.env.IMAGE_TAG;
   const dockerOptions = JSON.parse(core.getInput('dockerOptions') || process.env.DOCKER_OPTIONS || '{}');
-  if (dockerOptions.privateKeyPath) {
-    dockerOptions.sshOptions = dockerOptions.sshOptions || {};
-    dockerOptions.sshOptions.privateKey = await fsp.readFile(dockerOptions.privateKeyPath)
-      .then((v) => v.toString());
+  const privateKeyPath = core.getInput('privateKeyPath') || process.env.PRIVATE_KEY_PATH;
 
-    delete dockerOptions.privateKeyPath;
+  if (privateKeyPath) {
+    dockerOptions.sshOptions = dockerOptions.sshOptions || {};
+    dockerOptions.sshOptions.privateKey = await fsp.readFile(privateKeyPath)
+      .then((v) => v.toString());
   }
 
   core.info('Connecting to docker...');

@@ -10,6 +10,9 @@ inputs:
   dockerOptions:
     description: 'JSON connection options (dockerode)'
     required: true
+  privateKeyPath:
+    description: 'ssh private key path'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
