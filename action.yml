@@ -17,8 +17,8 @@ inputs:
     description: 'ssh private key'
     required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node21'
+  main: 'index.js'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
