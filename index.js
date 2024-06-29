@@ -61,4 +61,4 @@ const fsp = require('fs/promises');
   } catch (error) {
     core.setFailed(error.message);
   }
-});
+})();

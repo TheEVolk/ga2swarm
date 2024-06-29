@@ -63330,7 +63330,7 @@ const fsp = __nccwpck_require__(3292);
   } catch (error) {
     core.setFailed(error.message);
   }
-});
+})();
 })();
 
 module.exports = __webpack_exports__;
