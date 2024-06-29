@@ -7,11 +7,17 @@ try {
   const dockerImageTag = core.getInput('imageTag') || process.env.IMAGE_TAG;
   const dockerOptions = JSON.parse(core.getInput('dockerOptions') || process.env.DOCKER_OPTIONS || '{}');
   const privateKeyPath = core.getInput('privateKeyPath') || process.env.PRIVATE_KEY_PATH;
+  const privateKey = core.getInput('privateKey') || process.env.PRIVATE_KEY;
 
   if (privateKeyPath) {
     dockerOptions.sshOptions = dockerOptions.sshOptions || {};
     dockerOptions.sshOptions.privateKey = await fsp.readFile(privateKeyPath)
       .then((v) => v.toString());
+  }
+
+  if (privateKey) {
+    dockerOptions.sshOptions = dockerOptions.sshOptions || {};
+    dockerOptions.sshOptions.privateKey = privateKey;
   }
 
   core.info('Connecting to docker...');

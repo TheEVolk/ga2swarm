@@ -13,6 +13,9 @@ inputs:
   privateKeyPath:
     description: 'ssh private key path'
     required: false
+  privateKey:
+    description: 'ssh private key'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

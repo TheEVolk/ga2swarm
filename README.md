@@ -24,6 +24,10 @@ Simple Docker Swarm service updater similar to Portainer webhooks.
 **Description:** SSH Path to your private key for secure connections.
 **Required:** false  
 
+### `privateKey`
+
+**Description:** SSH private key for secure connections.
+**Required:** false  
 
 ## Usage
 
@@ -48,7 +52,7 @@ jobs:
         with:
           serviceId: 'your-service-id'
           imageTag: 'latest'
-          dockerOptions: '{"host": "tcp://your-docker-host:2375", "protocol": "https", "privateKeyPath": "/path/to/your/private/key"}'
+          dockerOptions: '{"host": "tcp://your-docker-host:2375", "protocol": "https"}'
 ```
 
 ### Example Configuration Details
