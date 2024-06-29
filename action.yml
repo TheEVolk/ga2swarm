@@ -17,7 +17,7 @@ inputs:
     description: 'ssh private key'
     required: false
 runs:
-  using: 'node21'
+  using: 'node20'
   main: 'index.js'
 branding:
   icon: 'upload-cloud'
