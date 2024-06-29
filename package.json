@@ -1,0 +1,14 @@
+{
+  "name": "ga2swarm",
+  "private": true,
+  "version": "0.1.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "dockerode": "^4.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+name: 'Github Actions to Docker Swarm'
+description: 'Simple docker swarm service updater like portainer webhooks'
+inputs:
+  serviceId:
+    description: 'The ID of the service'
+    required: true
+  imageTag:
+    description: 'The Docker image tag'
+    required: false
+  dockerOptions:
+    description: 'JSON connection options (dockerode)'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'log'
+  color: 'blue'
